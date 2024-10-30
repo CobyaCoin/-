@@ -93,7 +93,7 @@ int main() {
 }
 ```
 
-#Слияния
+# Слияния
 
 ```cpp
 #include <iostream>
