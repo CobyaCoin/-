@@ -17,6 +17,7 @@
 using namespace std;
 
 void bubbleSort(vector<int>& arr) {
+    unsigned int start_time = clock();
     int n = arr.size();
     for (int i = 0; i < n - 1; ++i) {
         for (int j = 0; j < n - i - 1; ++j) {
@@ -25,6 +26,9 @@ void bubbleSort(vector<int>& arr) {
             }
         }
     }
+unsigned int end_time = clock();
+unsigned int alltime = end_time - start_time;
+cout << alltime;
 }
 
 int main() {
