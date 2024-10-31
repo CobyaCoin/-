@@ -13,11 +13,13 @@
 #include <fstream>
 #include <vector>
 #include <algorithm> 
+#include <time.h>
 
 using namespace std;
 
-void bubbleSort(vector<int>& arr) {
-    unsigned int start_time = clock();
+double bubbleSort(vector<int>& arr) {
+    time_t start, end;
+    time(&start);
     int n = arr.size();
     for (int i = 0; i < n - 1; ++i) {
         for (int j = 0; j < n - i - 1; ++j) {
@@ -26,9 +28,10 @@ void bubbleSort(vector<int>& arr) {
             }
         }
     }
-unsigned int end_time = clock();
-unsigned int alltime = end_time - start_time;
-cout << alltime;
+    
+    time(&end);
+    double seconds = difftime(end, start);
+    return seconds;
 }
 
 int main() {
@@ -37,6 +40,7 @@ int main() {
 
     vector<int> arr;
     int number;
+    double timecount;
 
     while (inputFile >> number) {
         arr.push_back(number);
@@ -44,12 +48,13 @@ int main() {
 
     inputFile.close();
 
-    bubbleSort(arr);
+    timecount = bubbleSort(arr);
 
     for (const int& num : arr) {
         cout << num << " ";
     }
     cout << endl;
+    cout << timecount;
 
     return 0;
 }
