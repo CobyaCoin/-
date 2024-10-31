@@ -118,7 +118,9 @@ int main() {
 
 using namespace std;
 
-void mergeSort(vector<int>& arr, int left, int right) {
+double mergeSort(vector<int>& arr, int left, int right) {
+    time_t start, end;
+    time(&start);
     if (left < right) {
         int mid = left + (right - left) / 2;
 
@@ -148,12 +150,16 @@ void mergeSort(vector<int>& arr, int left, int right) {
             arr[i] = temp[k];
         }
     }
+    time(&end);
+    double seconds = difftime(end, start);
+    return seconds;
 }
 
 int main() {
     ifstream inputFile("input.txt");
     vector<int> arr;
     int number;
+    double alltime;
 
     while (inputFile >> number) {
         arr.push_back(number);
@@ -161,11 +167,12 @@ int main() {
 
     inputFile.close();
 
-    mergeSort(arr, 0, arr.size() - 1);
+    alltime = mergeSort(arr, 0, arr.size() - 1);
 
     for (const int& num : arr) {
         cout << num << " ";
     }
+    cout << endl << alltime;
     
     return 0;
 }
