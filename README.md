@@ -67,7 +67,9 @@ int main() {
 
 using namespace std;
 
-void insertionSort(vector<int>& arr) {
+double insertionSort(vector<int>& arr) {
+    time_t start, end;
+    time(&start);
     int n = arr.size();
     for (int i = 1; i < n; ++i) {
         int key = arr[i];
@@ -79,24 +81,29 @@ void insertionSort(vector<int>& arr) {
         }
         arr[j + 1] = key;  
     }
+    time(&end);
+    double seconds = difftime(end, start);
+    return seconds;
 }
 
 int main() {
     ifstream inputFile("input.txt");
     vector<int> arr;
     int num;
+    double alltime;
 
     while (inputFile >> num) {
         arr.push_back(num);
     }
     inputFile.close();
 
-    insertionSort(arr);
+    alltime = insertionSort(arr);
 
     for (int i : arr) {
         cout << i << " ";
     }
     cout << endl;
+    cout << alltime;
 
     return 0;
 }
