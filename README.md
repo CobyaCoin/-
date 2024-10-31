@@ -186,7 +186,9 @@ int main() {
 
 using namespace std;
 
-void selectionSort(vector<int>& arr) {
+double selectionSort(vector<int>& arr) {
+    time_t start, end;
+    time(&start);
     int n = arr.size();
     for (int i = 0; i < n - 1; ++i) {
         int minIndex = i;
@@ -197,6 +199,9 @@ void selectionSort(vector<int>& arr) {
         }
         swap(arr[i], arr[minIndex]);
     }
+    time(&end);
+    double seconds = difftime(end, start);
+    return seconds;
 }
 
 int main() {
@@ -205,6 +210,7 @@ int main() {
 
     vector<int> arr;
     int number;
+    double alltime;
 
     while (inputFile >> number) {
         arr.push_back(number);
@@ -212,12 +218,13 @@ int main() {
 
     inputFile.close();
 
-    selectionSort(arr);
+    alltime = selectionSort(arr);
 
     for (const int& num : arr) {
         cout << num << " ";
     }
     cout << endl;
+    cout << alltime;
 
     return 0;
 }
